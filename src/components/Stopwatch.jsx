@@ -20,15 +20,15 @@ const Stopwatch = () => {
             <Timer centisecond={centisecond} />
             <div className="flex justify-between text-white pb-8 text-sm select-none">
                 <Button
-                    label="리셋"
+                    label={isRunning ? '랩' : '리셋'}
                     code="L"
                     color="bg-gray-600"
                     onClick={handleLapResetClick}
                 />
                 <Button
-                    label="시작"
+                    label={isRunning ? '중단' : '시작'}
                     code="S"
-                    color="bg-green-600"
+                    color={isRunning ? 'bg-red-600' : 'bg-green-600'}
                     onClick={handleStartStopClick}
                 />
             </div>
