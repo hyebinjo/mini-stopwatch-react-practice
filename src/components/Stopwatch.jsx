@@ -32,7 +32,7 @@ const Stopwatch = () => {
                     onClick={handleStartStopClick}
                 />
             </div>
-            <Laps />
+            <Laps laps={laps} />
         </section>
     );
 };
