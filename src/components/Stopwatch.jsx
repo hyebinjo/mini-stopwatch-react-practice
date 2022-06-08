@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import useTimer from '../hooks/useTimer';
 import Button from './Button';
 import Laps from './Laps';
@@ -15,6 +16,25 @@ const Stopwatch = () => {
         isRunning ? createLap() : reset();
     };
 
+    const lapResetBtnRef = useRef(null);
+    const startStopBtnRef = useRef(null);
+
+    const triggerOnClick = (e) => {
+        const keyCode = e.code;
+        if (keyCode === 'KeyL') {
+            lapResetBtnRef.current.click();
+        } else if (keyCode === 'KeyS') {
+            startStopBtnRef.current.click();
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener('keydown', triggerOnClick);
+        return () => {
+            window.removeEventListener('keydown', triggerOnClick);
+        };
+    }, []);
+
     return (
         <section className="w-fit bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col justify-center m-auto mt-36 max-w-sm">
             <Timer centisecond={centisecond} />
@@ -24,12 +44,14 @@ const Stopwatch = () => {
                     code="L"
                     color="bg-gray-600"
                     onClick={handleLapResetClick}
+                    ref={lapResetBtnRef}
                 />
                 <Button
                     label={isRunning ? '중단' : '시작'}
                     code="S"
                     color={isRunning ? 'bg-red-600' : 'bg-green-600'}
                     onClick={handleStartStopClick}
+                    ref={startStopBtnRef}
                 />
             </div>
             <Laps laps={laps} />
