@@ -1,4 +1,5 @@
 import formatTime from '../util/formatTime';
+import { memo } from 'react';
 
 const Laps = ({ laps }) => {
     const lapTimes = laps.reduce((prev, curr) => [...prev, curr[1]], []);
@@ -33,4 +34,4 @@ const Laps = ({ laps }) => {
     );
 };
 
-export default Laps;
+export default memo(Laps);

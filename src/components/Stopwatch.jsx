@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import useTimer from '../hooks/useTimer';
 import Button from './Button';
 import Laps from './Laps';
@@ -8,9 +8,9 @@ const Stopwatch = () => {
     const { centisecond, start, pause, createLap, reset, isRunning, laps } =
         useTimer();
 
-    const handleStartStopClick = () => {
+    const handleStartStopClick = useCallback(() => {
         isRunning ? pause() : start();
-    };
+    }, [isRunning, pause, start]);
 
     const handleLapResetClick = () => {
         isRunning ? createLap() : reset();

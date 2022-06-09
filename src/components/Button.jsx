@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, memo } from 'react';
 
 const Button = forwardRef(({ color, label, code, onClick }, ref) => (
     <button
@@ -11,4 +11,4 @@ const Button = forwardRef(({ color, label, code, onClick }, ref) => (
     </button>
 ));
 
-export default Button;
+export default memo(Button);
