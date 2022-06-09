@@ -1,20 +1,6 @@
-const Timer = ({ centisecond }) => {
-    const formatTimeNum = (num) => {
-        return num.toString().length === 1 ? `0${num}` : num;
-    };
+import formatTime from '../util/formatTime';
 
-    const formatTime = (num) => {
-        const minute = parseInt(num / 6000);
-        const second = parseInt((num % 6000) / 100);
-        const centisecond = parseInt((num % 6000) % 100);
-        return (
-            formatTimeNum(minute) +
-            ':' +
-            formatTimeNum(second) +
-            '.' +
-            formatTimeNum(centisecond)
-        );
-    };
+const Timer = ({ centisecond }) => {
     return (
         <h1 className="text-5xl font-extrabold pb-8 text-center tracking-tighter break-words">
             {formatTime(centisecond)}
